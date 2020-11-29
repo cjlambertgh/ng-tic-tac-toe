@@ -3,4 +3,12 @@
     border-style: solid;
     background-color: white;
     min-height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .section-content {
+        display: flex;
+    }
   }
