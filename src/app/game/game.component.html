@@ -1,0 +1,5 @@
+<div class="game">
+    <app-section [section]="section" (sectionClicked)="onSectionClicked($event)"
+    *ngFor="let section of sections"></app-section>
+    <button (click)="newGame()">Reset</button>
+</div>
