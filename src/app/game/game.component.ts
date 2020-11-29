@@ -16,6 +16,16 @@ export class GameComponent implements OnInit {
   playerTurn = 1;
   currentPlayer: Player = {id: -1, name: '', color: ''};
   gameWon = false;
+  winRows: number[][] = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+  ];
 
   constructor() {
     this.initialiseGame();
@@ -40,11 +50,14 @@ export class GameComponent implements OnInit {
   }
 
   checkVictory(id: number): boolean {
-    let playerSections = this.getPlayerSelectedSections(id);
+    const playerSections = this.getPlayerSelectedSections(id);
     console.log(playerSections);
-    let topRow = [0,1,2];
-    let success = topRow.every((val) => playerSections.includes(val))
-    return success;
+    for (const row of this.winRows) {
+      let success = row.every((val) => playerSections.includes(val))
+      if(success) return true;
+    }
+    
+    return false;
   }
 
   getPlayerSelectedSections(playerId: number): number[] {
